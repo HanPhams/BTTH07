@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Form Registration</title>
 </head>
 <body>
@@ -26,14 +27,46 @@
                 Password:
             </div>
             <div class="col">
-                <input type="password" name="txtPassword" id="txtPassword">
+                <input type="password" name="txtPassword" id="txtPassword" required>
                 <span id="statusOfPassword"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Name:
+            </div>
+            <div class="col">
+                <input type="text" name="txtName" id="txtName" required>
+                <span id="statusOfName"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Address:
+            </div>
+            <div class="col">
+                <input type="text" name="txtAddress" id="txtAddress" >
+                <span id="statusOfAddress"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Country:
+            </div>
+            <div class="col">
+                <select name="txtCountry" id="txtCountry" required>
+                    <option selected="" value="Default">(Please select a country)</option>
+                    <option value="VI">VietNamese</option>
+                    <option value="JP">Japan</option>
+                    <option value="US">United States</option>
+                    <option value="TL">Thailand</option>
+                    <option value="AU">Australia</option>
+                <span id="statusOfCountry"></span>
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-               
             </div>
             <div class="col">
                 <input type="submit" name="btnRegister" id="btnRegister" value="Register">

@@ -89,26 +89,90 @@
 
 // Cách 03: Sử dụng thư viện jQuery
 // Cú pháp jQuery: $(SELECTOR).ACTION()
-$(document).ready(function(){
+$(document).ready(function () {
 
-    function checkUserId(){
+    function checkUserId() {
         // Cách 02: dùng BTCQ: [1, +duongvocung]
         let userID = $('#txtUserID').val();
         let userIDRegex = /^[a-zA-Z0-9]{5,12}$/;
-        if(userIDRegex.test(userID)){
+        if (userIDRegex.test(userID)) {
             return true
         }
         return false
     }
 
-    $("#btnRegister").click(function(e){
+    // Password
+    function checkPassword() {
+        let passw = $('#txtPassword').val();
+        let passwRegex = /^[a-zA-Z0-9]{7,12}$/;
+        if (passwRegex.test(passw)) {
+            return true
+        }
+        return false
+    }
+    // Name
+    function checkName() {
+        let name = $('#txtName').val();
+        let nameRegex = /^[A-Za-z]+$/;
+        if (nameRegex.test(name)){
+            return true
+        }
+        return false
+    }
+    // Address
+    function checkAddress() {
+        let address = $('#txtName').val();
+        let addressRegex = /^[A-Za-z]+$/;
+        if (addressRegex.test(address)){
+            return true
+        }
+        return false
+    }
+    // Country
+    function checkCountry() {
+        let country = $('#txtCountry').val();
+        let countryRegex = "(Please select a country)";
+        if (countryRegex==country){
+            return true
+        }
+        return false
+    }
+    $("#btnRegister").click(function (e) {
         e.preventDefault();
-        if(checkUserId()){
+        if (checkUserId()) {
             $("#statusOfUserID").text('UserID hợp lệ')
-            $("#statusOfUserID").css('color','blue')
-        }else{
+            $("#statusOfUserID").css('color', 'blue')
+        } else {
             $("#statusOfUserID").text('UserID không hợp lệ')
-            $("#statusOfUserID").css('color','red')
+            $("#statusOfUserID").css('color', 'red')
+        }
+        if (checkPassword()) {
+            $("#statusOfPassword").text('Password hợp lệ')
+            $("#statusOfPassword").css('color', 'blue')
+        } else {
+            $("#statusOfPassword").text('Password không hợp lệ')
+            $("#statusOfPassword").css('color', 'red')
+        }
+        if (checkName()) {
+            $("#statusOfName").text('Name hợp lệ')
+            $("#statusOfName").css('color', 'blue')
+        } else {
+            $("#statusOfName").text('Name không hợp lệ')
+            $("#statusOfName").css('color', 'red')
+        }
+        if (checkAddress()) {
+            $("#statusOfAddress").text('Address hợp lệ')
+            $("#statusOfAddress").css('color', 'blue')
+        } else {
+            $("#statusOfAddress").text('Address hợp lệ (chỉ chứa chữ cái và số!).')
+            $("#statusOfAddress").css('color', 'red')
+        }
+        if (checkCountry()) {
+            $("#statusOfCountry").text('Vui lòng chọn Country ')
+            $("#statusOfCountry").css('color', 'red')
+        } else {
+            $("#statusOfCountry").text('Complete.')
+            $("#statusOfCountry").css('color', 'blue')
         }
     })
 })
