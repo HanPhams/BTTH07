@@ -1,178 +1,156 @@
-// // Câu 01: Đăng kí User ID > 
-// // Yêu cầu 01: Required
-// // Yêu cầu 02: Độ dài thuộc [5, 12] 
-//     // Cách 01: Ko dùng biểu thức chính qui
-//     // Cách 02: Có dùng biểu thức chính qui
-
-// // Lưu ý: Kiểu phần tử Submit có hành động mặc định gửi dữ liệu đi
-
-// let userID = document.getElementById('txtUserID');
-// let statusOfUserID = document.getElementById('statusOfUserID')
-// // let userID = document.querySelector('#txtUserID')
-
-// userID.addEventListener('focus',function(){
-//     // userID.style.backgroundColor = 'yellow'
-//     this.style.border = '1px solid red'
-// })
-
-// userID.addEventListener('focusout', leaveUserId)
-
-// function leaveUserId(){
-//     // Cách 01: Ko dùng gì BTCQ
-//     // if(userID.value.length >=5 && userID.value.length <=12){
-//     //     statusOfUserID.textContent = 'UserID hợp lệ'
-//     //     statusOfUserID.style.color = 'blue'
-//     // }else{
-//     //     statusOfUserID.textContent = 'UserID không hợp lệ. Độ dài từ 5 - 12'
-//     //     statusOfUserID.style.color = 'red'
-//     // }
-
-//     // Cách 02: dùng BTCQ: [1, +duongvocung]
-//     var userIDRegex = /^[a-zA-Z0-9]{5,12}$/;
-//     if(userIDRegex.test(userID.value)){
-//         statusOfUserID.textContent = 'UserID hợp lệ'
-//         statusOfUserID.style.color = 'blue'
-//     }else{
-//         statusOfUserID.textContent = 'UserID không hợp lệ. Độ dài từ 5 - 12'
-//         statusOfUserID.style.color = 'red'
-//     }
-// }
-
-// // userID.onchange = function(){
-// //     alert('Bạn vừa thay đổi UserID và thoát khỏi UserID')
-// // }
-
-// Cách làm 02: Chỉ xử lý khi nhấp Submit
-
-// function checkUserId(){
-//         // Cách 02: dùng BTCQ: [1, +duongvocung]
-//     let userID = document.getElementById('txtUserID');
-//     let userIDRegex = /^[a-zA-Z0-9]{5,12}$/;
-//     if(userIDRegex.test(userID.value)){
-//         return true
-//     }
-//     return false
-// }
-
-// function checkPassword(){
-//     let password = document.getElementById('txtPassword');
-//     let passwordRegex = /^[a-zA-Z0-9]{7,12}$/;
-//     if(passwordRegex.test(password.value)){
-//         return true
-//     }
-//     return false
-// }
-// // Tương tự sẽ có 9 hàm check khác
-
-// let register = document.getElementById('btnRegister')
-
-// register.addEventListener('click', function(e){
-//     e.preventDefault()
-//     let statusOfUserID = document.getElementById('statusOfUserID')
-//     let statusOfPassword = document.getElementById('statusOfPassword')
-//     if(checkUserId() == true){
-//         statusOfUserID.textContent = 'UserID hợp lệ'
-//         statusOfUserID.style.color = 'blue'
-//     }else{
-//         statusOfUserID.textContent = 'UserID không hợp lệ. Độ dài từ 5 - 12'
-//         statusOfUserID.style.color = 'red'
-//     }
-
-//     if(checkPassword() == true){
-//         statusOfPassword.textContent = 'Password hợp lệ'
-//         statusOfPassword.style.color = 'blue'
-//     }else{
-//         statusOfPassword.textContent = 'Password không hợp lệ. Độ dài từ 7 - 12'
-//         statusOfPassword.style.color = 'red'
-//     }
-// })
-
-// Cách 03: Sử dụng thư viện jQuery
-// Cú pháp jQuery: $(SELECTOR).ACTION()
-$(document).ready(function () {
-
-    function checkUserId() {
-        // Cách 02: dùng BTCQ: [1, +duongvocung]
+$(document).ready(function(){
+    function checkUserId(){
         let userID = $('#txtUserID').val();
         let userIDRegex = /^[a-zA-Z0-9]{5,12}$/;
-        if (userIDRegex.test(userID)) {
+        if(userIDRegex.test(userID)){
             return true
         }
         return false
     }
-
-    // Password
-    function checkPassword() {
-        let passw = $('#txtPassword').val();
-        let passwRegex = /^[a-zA-Z0-9]{7,12}$/;
-        if (passwRegex.test(passw)) {
-            return true
-        }
-        return false
-    }
-    // Name
-    function checkName() {
-        let name = $('#txtName').val();
-        let nameRegex = /^[A-Za-z]+$/;
-        if (nameRegex.test(name)){
-            return true
-        }
-        return false
-    }
-    // Address
-    function checkAddress() {
-        let address = $('#txtName').val();
-        let addressRegex = /^[A-Za-z]+$/;
-        if (addressRegex.test(address)){
-            return true
-        }
-        return false
-    }
-    // Country
-    function checkCountry() {
-        let country = $('#txtCountry').val();
-        let countryRegex = "(Please select a country)";
-        if (countryRegex==country){
-            return true
-        }
-        return false
-    }
-    $("#btnRegister").click(function (e) {
+    $("#btnRegister").click(function(e){
         e.preventDefault();
-        if (checkUserId()) {
+        if(checkUserId()){
             $("#statusOfUserID").text('UserID hợp lệ')
-            $("#statusOfUserID").css('color', 'blue')
-        } else {
+            $("#statusOfUserID").css('color','blue')
+        }else{
             $("#statusOfUserID").text('UserID không hợp lệ')
-            $("#statusOfUserID").css('color', 'red')
-        }
-        if (checkPassword()) {
-            $("#statusOfPassword").text('Password hợp lệ')
-            $("#statusOfPassword").css('color', 'blue')
-        } else {
-            $("#statusOfPassword").text('Password không hợp lệ')
-            $("#statusOfPassword").css('color', 'red')
-        }
-        if (checkName()) {
-            $("#statusOfName").text('Name hợp lệ')
-            $("#statusOfName").css('color', 'blue')
-        } else {
-            $("#statusOfName").text('Name không hợp lệ')
-            $("#statusOfName").css('color', 'red')
-        }
-        if (checkAddress()) {
-            $("#statusOfAddress").text('Address hợp lệ')
-            $("#statusOfAddress").css('color', 'blue')
-        } else {
-            $("#statusOfAddress").text('Address hợp lệ (chỉ chứa chữ cái và số!).')
-            $("#statusOfAddress").css('color', 'red')
-        }
-        if (checkCountry()) {
-            $("#statusOfCountry").text('Vui lòng chọn Country ')
-            $("#statusOfCountry").css('color', 'red')
-        } else {
-            $("#statusOfCountry").text('Complete.')
-            $("#statusOfCountry").css('color', 'blue')
+            $("#statusOfUserID").css('color','red')
         }
     })
 })
+
+$(document).ready(function(){
+    function checkPass(){
+        let passWord = $('#txtPassword').val();
+        let passRegex = /^[a-zA-Z0-9]{7,12}$/;
+        if(passRegex.test(passWord)){
+            return true
+        }
+        return false
+    }
+    $("#btnRegister").click(function(e){
+        e.preventDefault();
+        if(checkPass()){
+            $("#statusOfPassword").text('Password hợp lệ')
+            $("#statusOfPassword").css('color','blue')
+        }
+        else{
+            $("#statusOfPassword").text('Password không hợp lệ')
+            $("#statusOfPassword").css('color','red')
+        }
+    })
+})
+
+$(document).ready(function(){
+   
+    function checkName(){
+        let txtName = $('#txtName').val();
+        let txtNameregex = /^[a-zA-Z]+$/;
+        if(txtNameregex.test(txtName)){
+            return true
+        }
+        return false
+    }
+    $("#btnRegister").click(function(e){
+        e.preventDefault();
+        if(checkName()){
+            $("#name_row").text('Tên hợp lệ')
+            $("#name_row").css('color','blue')
+        }
+        else{
+            $("#name_row").text('Tên không hợp lệ')
+            $("#name_row").css('color','red')
+        }
+    })
+})
+
+
+$(document).ready(function(){
+    function checkCountry(){
+        let optionCountry =  $('#selectCountry').val();
+        if(optionCountry == 'Default'){
+            return true
+        }
+        return false
+    }
+    $("#btnRegister").click(function(e){
+        e.preventDefault();
+        if(checkCountry()){
+            $("#statusOfCountry").text('Vui lòng chọn quốc gia')
+            $("#statusOfCountry").css('color','red')
+        }
+        else{
+            $("#statusOfCountry").text('Hợp lệ')
+            $("#statusOfCountry").css('color','blue')
+        }
+    })
+})
+
+$(document).ready(function(){
+   
+    function checkCode(){
+        let txtCode = $('#txtCode').val();
+        let txtCoderegex = /^[0-9]+$/;
+        if(txtCoderegex.test(txtCode)){
+            return true
+        }
+        return false
+    }
+    $("#btnRegister").click(function(e){
+        e.preventDefault();
+        if(checkCode()){
+            $("#statusOfCode").text('Mã zip hợp lệ')
+            $("#statusOfCode").css('color','blue')
+        }
+        else{
+            $("#statusOfCode").text('Mã zip không hợp lệ')
+            $("#statusOfCode").css('color','red')
+        }
+    })
+})
+
+$(document).ready(function(){
+   
+    function checkMail(){
+        let txtMail = $('#txtMail').val();
+        let txtMailregex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z\-])+\.)+[a-zA-Z]{2,4}$/;
+        if(txtMailregex.test(txtMail)){
+            return true
+        }
+        return false
+    }
+    $("#btnRegister").click(function(e){
+        e.preventDefault();
+        if(checkMail()){
+            $("#statusOfMail").text('Email hợp lệ')
+            $("#statusOfMail").css('color','blue')
+        }
+        else{
+            $("#statusOfMail").text('Email không hợp lệ')
+            $("#statusOfMail").css('color','red')
+        }
+    })
+})
+
+
+$(document).ready(function(){
+    function checkSex(){
+        let sex = $('.1:checked').val();
+        if(sex == true){
+            return true
+        }
+        return false
+    }
+
+    $("#btnRegister").click(function(e){
+            e.preventDefault();
+            if(checkSex()){
+                $("#statusOfSex").text('Hợp lệ')
+                $("#statusOfSex").css('color','blue')
+            }
+            else{
+                $("#statusOfSex").text('Vui lòng chọn giới tính')
+                $("#statusOfSex").css('color','red')
+            }
+        })
+});
